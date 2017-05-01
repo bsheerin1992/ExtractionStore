@@ -1,5 +1,6 @@
 namespace ExtractionStore.Migrations
 {
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,18 +16,10 @@ namespace ExtractionStore.Migrations
 
         protected override void Seed(ExtractionStore.Models.ExtractionStoreDb context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Files.AddOrUpdate(f => f.Name,
+                new File { Name = "abcd" },
+                new File { Name = "efgh" },
+                new File { Name = "yz12" });
         }
     }
 }

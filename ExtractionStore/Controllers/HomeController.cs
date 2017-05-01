@@ -13,23 +13,26 @@ namespace ExtractionStore.Controllers
 
         public ActionResult Index()
         {
-            var model = _db.Files.ToList();
-
-            return View(model);
+            return View();
         }
 
         public ActionResult Upload()
         {
             ViewBag.Message = "Your application upload page.";
-
+            
             return View();
         }
 
-        public ActionResult Analysis()
+        public ActionResult Analysis(string searchTerm = null)
         {
             ViewBag.Message = "Your analysis page.";
 
-            return View();
+            var model =
+                _db.Files
+                   .OrderBy(f => f.Name)
+                   .Where(f => searchTerm == null || f.Name.Contains(searchTerm));
+
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)
