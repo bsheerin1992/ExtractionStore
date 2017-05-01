@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExtractionStore.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,13 @@ namespace ExtractionStore.Controllers
 {
     public class HomeController : Controller
     {
+        ExtractionStoreDb _db = new ExtractionStoreDb();
+
         public ActionResult Index()
         {
-            return View();
+            var model = _db.Files.ToList();
+
+            return View(model);
         }
 
         public ActionResult Upload()
@@ -25,6 +30,16 @@ namespace ExtractionStore.Controllers
             ViewBag.Message = "Your analysis page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
     }
 }
