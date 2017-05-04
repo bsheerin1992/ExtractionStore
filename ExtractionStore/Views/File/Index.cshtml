@@ -4,16 +4,12 @@
     ViewBag.Title = "Analysis Page";
 }
 
-@using (Ajax.BeginForm(
-                new AjaxOptions
-                {
-                    HttpMethod = "get",
-                    InsertionMode = InsertionMode.Replace,
-                    UpdateTargetId = "restaurantList"
-                }))
-{
+<form method="get" action="@Url.Action("Index")"
+      data-exst-ajax="true" data-exst-target="#fileList">
+
     <input type="search" name="searchTerm" />
     <input type="submit" value="Search By Name" />
-}
+
+</form>
 
 @Html.Partial("_Files", Model)
