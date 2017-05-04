@@ -16,10 +16,11 @@ namespace ExtractionStore.Migrations
 
         protected override void Seed(ExtractionStore.Models.ExtractionStoreDb context)
         {
-            context.Files.AddOrUpdate(f => f.Name,
-                new File { Name = "abcd" },
-                new File { Name = "efgh" },
-                new File { Name = "yz12" });
+            for (int i = 0; i < 100; i++)
+            {
+                context.Files.AddOrUpdate(r => r.Name,
+                    new File { Name = i.ToString(), Type = "file", Data = (i * 83).ToString() });
+            }
         }
     }
 }
