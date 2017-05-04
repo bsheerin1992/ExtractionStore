@@ -10,8 +10,7 @@ namespace ExtractionStore.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(1024)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         [Display(Name="File Type")]
