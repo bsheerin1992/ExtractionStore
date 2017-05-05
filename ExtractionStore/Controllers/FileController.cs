@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ExtractionStore.Models;
 using PagedList;
+using System.Data.Entity.Infrastructure;
 
 namespace ExtractionStore.Controllers
 {
@@ -72,14 +73,35 @@ namespace ExtractionStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Type,Data")] File file)
+        public ActionResult Create([Bind(Include = "Id,Name,Type,Data")] File file, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
-            {
+            //try
+            //{
+                if (ModelState.IsValid)
+                {
+                    //if (upload != null && upload.ContentLength > 0)
+                    //{
+                    //    var identity = new File
+                    //    {
+                    //        Name = System.IO.Path.GetFileName(upload.FileName),
+                    //        FileType = FileType.Identity,
+                    //        Type = upload.ContentType
+                    //    };
+                    //    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    //    {
+                    //        identity.Data = reader.ReadBytes(upload.ContentLength);
+                    //    }
+                    //    file.Files = new List<File> { identity };
+                    //}
                 db.Files.Add(file);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            //catch (RetryLimitExceededException /* dex */)
+            //{
+            //    //Log the error (uncomment dex variable name and add a line here to write a log.
+            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            //}
 
             return View(file);
         }
