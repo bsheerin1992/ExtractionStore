@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ExtractionStore.Models;
+using PagedList;
 
 namespace ExtractionStore.Controllers
 {
@@ -28,13 +29,13 @@ namespace ExtractionStore.Controllers
         }
 
         // GET: File
-        public ActionResult Index(string searchTerm = null)
+        public ActionResult Index(string searchTerm = null, int page = 1)
         {
             var model =
-                            db.Files
-                               .OrderBy(f => f.Name)
-                               .Where(f => searchTerm == null || f.Name.Contains(searchTerm))
-                               .Take(10);
+                db.Files
+                .OrderBy(f => f.Name)
+                .Where(f => searchTerm == null || f.Name.Contains(searchTerm))
+                .ToPagedList(page, 10);
 
             if (Request.IsAjaxRequest())
             {

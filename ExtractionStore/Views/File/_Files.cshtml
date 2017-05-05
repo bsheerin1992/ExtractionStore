@@ -1,6 +1,12 @@
-﻿@model IEnumerable<ExtractionStore.Models.File>
+﻿@model IPagedList<ExtractionStore.Models.File>
 
 <div id="fileList">
+
+    <div class="pagedList" data-exst-target="#fileList">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+        PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
+
     @foreach (var item in Model)
     {
         <div>

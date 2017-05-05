@@ -39,6 +39,25 @@
         $input.autocomplete(options);
     };
 
+    var getPage = function () {
+        var $a = $(this);
+
+        var options = {
+            url: $a.attr("href"),
+            data: $("form").serialize(),
+            type: "get"
+        };
+
+        $.ajax(options).done(function (data) {
+            var target = $a.parents("div.pagedList").attr("data-exst-target");
+            $(target).replaceWith(data);
+        });
+        return false;
+
+    };
+
     $("form[data-exst-ajax='true']").submit(ajaxFormSubmit);
     $("input[data-exst-autocomplete]").each(createAutocomplete);
+
+    $(".body-content").on("click", ".pagedList a", getPage);
 });
