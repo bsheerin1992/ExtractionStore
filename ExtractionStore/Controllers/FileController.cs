@@ -11,6 +11,7 @@ using PagedList;
 
 namespace ExtractionStore.Controllers
 {
+    [Authorize]
     public class FileController : Controller
     {
         private ExtractionStoreDb db = new ExtractionStoreDb();

@@ -1,5 +1,6 @@
 namespace ExtractionStore.Migrations
 {
+    using Microsoft.AspNet.Identity;
     using Models;
     using System;
     using System.Data.Entity;
@@ -21,6 +22,11 @@ namespace ExtractionStore.Migrations
                 context.Files.AddOrUpdate(r => r.Name,
                     new File { Name = i.ToString(), Type = "file", Data = (i * 83).ToString() });
             }
+
+            //var hasher = new PasswordHasher();
+            //context.Users.AddOrUpdate(u => u.UserName,
+            //        new ApplicationUser { UserName = "bpsheeri", PasswordHash = hasher.HashPassword("Rebels_17"), Email = "bpsheeri@go.olemiss.edu" }
+            //    );
         }
     }
 }
