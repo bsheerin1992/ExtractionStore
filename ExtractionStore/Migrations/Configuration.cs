@@ -20,7 +20,7 @@ namespace ExtractionStore.Migrations
             for (int i = 0; i < 100; i++)
             {
                 context.Files.AddOrUpdate(r => r.Name,
-                    new File { Name = i.ToString(), Type = "file", Data = (i * 83).ToString() });
+                    new File { Name = i.ToString(), Type = "pdf" });
             }
 
             //var hasher = new PasswordHasher();

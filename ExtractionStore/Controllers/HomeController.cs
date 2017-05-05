@@ -16,6 +16,7 @@ namespace ExtractionStore.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Upload()
         {
             ViewBag.Message = "Your application upload page.";

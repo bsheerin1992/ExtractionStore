@@ -15,6 +15,9 @@ namespace ExtractionStore.Models
 
         [Display(Name="File Type")]
         public string Type { get; set; }
-        public string Data { get; set; }
+        public byte[] Data { get; set; }
+        public FileType FileType { get; set; }
+        public int UserId { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

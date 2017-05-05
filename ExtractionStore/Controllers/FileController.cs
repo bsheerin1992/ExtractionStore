@@ -11,7 +11,7 @@ using PagedList;
 
 namespace ExtractionStore.Controllers
 {
-    [Authorize]
+    [Authorize(Users ="bpsheeri@go.olemiss.edu")]
     public class FileController : Controller
     {
         private ExtractionStoreDb db = new ExtractionStoreDb();
