@@ -7,7 +7,7 @@
 <form method="get" action="@Url.Action("Index")"
       data-exst-ajax="true" data-exst-target="#fileList">
 
-    <input type="search" name="searchTerm" />
+    <input type="search" name="searchTerm" data-exst-autocomplete="@Url.Action("Autocomplete")" />
     <input type="submit" value="Search By Name" />
 
 </form>

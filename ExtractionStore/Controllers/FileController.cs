@@ -14,6 +14,19 @@ namespace ExtractionStore.Controllers
     {
         private ExtractionStoreDb db = new ExtractionStoreDb();
 
+        public ActionResult Autocomplete(string term)
+        {
+            var model =
+                db.Files
+                .Where(f => f.Name.StartsWith(term))
+                .Take(10)
+                .Select(f => new
+                {
+                    label = f.Name
+                });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: File
         public ActionResult Index(string searchTerm = null)
         {

@@ -13,7 +13,7 @@ namespace ExtractionStore
                        "~/Scripts/jquery-ui-{version}.js",
                        "~/Scripts/jquery.unobtrusive*",
                        "~/Scripts/jquery.validate*",
-                       "~/Scripts/exst-async.js"
+                       "~/Scripts/exst.js"
                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
