@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using ExtractionStore.Models;
 using PagedList;
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace ExtractionStore.Controllers
 {
@@ -79,9 +81,12 @@ namespace ExtractionStore.Controllers
             {
                 if (upload != null && upload.ContentLength > 0)
                 {
+                    ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
                     file = new File
                     {
                         FileName = System.IO.Path.GetFileName(upload.FileName),
+                        UserName = user.UserName,
                         ContentType = upload.ContentType
                     };
 

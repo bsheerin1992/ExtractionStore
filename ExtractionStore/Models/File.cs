@@ -14,6 +14,6 @@ namespace ExtractionStore.Models
         [StringLength(100)]
         public string ContentType { get; set; }
         public byte[] Content { get; set; }
-        public virtual ICollection<File> Files { get; set; }
+        public string UserName { get; set; }
     }
 }
