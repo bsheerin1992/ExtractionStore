@@ -30,8 +30,8 @@ namespace ExtractionStore.Controllers
 
             var model =
                 _db.Files
-                   .OrderBy(f => f.Name)
-                   .Where(f => searchTerm == null || f.Name.Contains(searchTerm));
+                   .OrderBy(f => f.FileName)
+                   .Where(f => searchTerm == null || f.FileName.Contains(searchTerm));
 
             return View(model);
         }

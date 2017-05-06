@@ -9,15 +9,11 @@ namespace ExtractionStore.Models
     public class File
     {
         public int Id { get; set; }
-
-        [StringLength(50)]
-        public string Name { get; set; }
-
-        [Display(Name="File Type")]
-        public string Type { get; set; }
-        public byte[] Data { get; set; }
-        public FileType FileType { get; set; }
-        public int UserId { get; set; }
-        public virtual Person Person { get; set; }
+        [StringLength(255)]
+        public string FileName { get; set; }
+        [StringLength(100)]
+        public string ContentType { get; set; }
+        public byte[] Content { get; set; }
+        public virtual ICollection<File> Files { get; set; }
     }
 }

@@ -17,16 +17,7 @@ namespace ExtractionStore.Migrations
 
         protected override void Seed(ExtractionStore.Models.ExtractionStoreDb context)
         {
-            for (int i = 0; i < 100; i++)
-            {
-                context.Files.AddOrUpdate(r => r.Name,
-                    new File { Name = i.ToString(), Type = "pdf" });
-            }
 
-            //var hasher = new PasswordHasher();
-            //context.Users.AddOrUpdate(u => u.UserName,
-            //        new ApplicationUser { UserName = "bpsheeri", PasswordHash = hasher.HashPassword("Rebels_17"), Email = "bpsheeri@go.olemiss.edu" }
-            //    );
         }
     }
 }

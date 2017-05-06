@@ -12,7 +12,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace ExtractionStore.Controllers
 {
-    [Authorize(Users ="bpsheeri@go.olemiss.edu")]
+    [Authorize(Users = "bpsheeri@go.olemiss.edu")]
     public class FileController : Controller
     {
         private ExtractionStoreDb db = new ExtractionStoreDb();
@@ -21,11 +21,11 @@ namespace ExtractionStore.Controllers
         {
             var model =
                 db.Files
-                .Where(f => f.Name.StartsWith(term))
+                .Where(f => f.FileName.StartsWith(term))
                 .Take(10)
                 .Select(f => new
                 {
-                    label = f.Name
+                    label = f.FileName
                 });
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -35,8 +35,8 @@ namespace ExtractionStore.Controllers
         {
             var model =
                 db.Files
-                .OrderBy(f => f.Name)
-                .Where(f => searchTerm == null || f.Name.Contains(searchTerm))
+                .OrderBy(f => f.FileName)
+                .Where(f => searchTerm == null || f.FileName.Contains(searchTerm))
                 .ToPagedList(page, 10);
 
             if (Request.IsAjaxRequest())
@@ -73,35 +73,33 @@ namespace ExtractionStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Type,Data")] File file, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "Id,FileName,ContentType,Content")] File file, HttpPostedFileBase upload)
         {
-            //try
-            //{
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
+            {
+                if (upload != null && upload.ContentLength > 0)
                 {
-                    //if (upload != null && upload.ContentLength > 0)
-                    //{
-                    //    var identity = new File
-                    //    {
-                    //        Name = System.IO.Path.GetFileName(upload.FileName),
-                    //        FileType = FileType.Identity,
-                    //        Type = upload.ContentType
-                    //    };
-                    //    using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                    //    {
-                    //        identity.Data = reader.ReadBytes(upload.ContentLength);
-                    //    }
-                    //    file.Files = new List<File> { identity };
-                    //}
+                    file = new File
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        ContentType = upload.ContentType
+                    };
+
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        file.Content = reader.ReadBytes(upload.ContentLength);
+                    }
+
+                    if (file.ContentType != "application/pdf")
+                    {
+                        ModelState.AddModelError("", "Invalid File Type");
+                        return View(file);
+                    }
+                }
                 db.Files.Add(file);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            //catch (RetryLimitExceededException /* dex */)
-            //{
-            //    //Log the error (uncomment dex variable name and add a line here to write a log.
-            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
-            //}
 
             return View(file);
         }
