@@ -7,11 +7,45 @@
         PagedListRenderOptions.MinimalWithItemCountText)
     </div>
 
-    @foreach (var item in Model)
-    {
-        <div>
-            <h4>@item.FileName&emsp;@item.ContentType&emsp;@item.Content&emsp;@item.UserName</h4>
-            <hr />
-        </div>
-    }
+    <table class="table">
+        <tr>
+            <th>
+                File Name
+            </th>
+            <th>
+                File Type
+            </th>
+            <th>
+               File Contents
+            </th>
+            <th>
+                Username
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.FileName
+                </td>
+                <td>
+                    @item.ContentType
+                </td>
+                <td>
+                    @item.Content
+                </td>
+                <td>
+                    @item.UserName
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Reviews", "Index", "Reviews", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
