@@ -65,6 +65,7 @@ namespace ExtractionStore.Controllers
         }
 
         // GET: File/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             return View();
