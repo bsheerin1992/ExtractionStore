@@ -20,6 +20,7 @@
                 </button>
                 @Html.ActionLink("Extraction Store", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+            @*made changes to navbar display and action calls*@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -38,6 +39,7 @@
         </footer>
     </div>
 
+    @*render my bundle*@
     @Scripts.Render("~/bundles/exst")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

@@ -9,6 +9,7 @@ namespace ExtractionStore
 {
     public partial class Startup
     {
+        //allow for user roles
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
@@ -16,7 +17,7 @@ namespace ExtractionStore
         }
 
 
-        // In this method we will create default User roles and Admin user for login   
+        //create default user roles and Admin user for login   
         private void createRolesandUsers()
         {
             ApplicationDbContext context = new ApplicationDbContext();
@@ -25,17 +26,16 @@ namespace ExtractionStore
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
 
-            // In Startup iam creating first Admin Role and creating a default Admin User    
+            //creating first Admin role and creating a default Admin user    
             if (!roleManager.RoleExists("Admin"))
             {
 
-                // first we create Admin rool   
+                //create Admin role   
                 var role = new IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
-                //Here we create a Admin super user who will maintain the website                  
-
+                //create an Admin super user who will maintain the website                  
                 var user = new ApplicationUser();
                 user.UserName = "bpsheeri@go.olemiss.edu";
                 user.Email = "bpsheeri@go.olemiss.edu";
@@ -44,7 +44,7 @@ namespace ExtractionStore
 
                 var chkUser = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
+                //add default user to Admin role   
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");

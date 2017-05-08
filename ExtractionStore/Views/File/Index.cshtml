@@ -4,6 +4,7 @@
     ViewBag.Title = "Analysis Page";
 }
 
+@*form for displaying the search bar*@
 <form method="get" action="@Url.Action("Index")"
       data-exst-ajax="true" data-exst-target="#fileList">
 
@@ -12,4 +13,5 @@
 
 </form>
 
+@*loads the partial view _Files to display search results*@
 @Html.Partial("_Files", Model)

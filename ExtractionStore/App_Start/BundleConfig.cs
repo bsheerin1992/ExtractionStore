@@ -8,6 +8,7 @@ namespace ExtractionStore
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            //Single bundle I created to reduce redundency in code
             bundles.Add(new ScriptBundle("~/bundles/exst").Include(
                        "~/Scripts/jquery-{version}.js",
                        "~/Scripts/jquery-ui-{version}.js",

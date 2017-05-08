@@ -8,11 +8,13 @@ namespace ExtractionStore.Models
 {
     public class ExtractionStoreDb : DbContext
     {
+        //set my db connection string
         public ExtractionStoreDb() : base("name=DefaultConnection")
         {
 
         }
 
+        //create db table of Files named Files
         public DbSet<File> Files { get; set; }
     }
 }

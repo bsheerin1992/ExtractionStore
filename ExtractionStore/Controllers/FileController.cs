@@ -17,8 +17,12 @@ namespace ExtractionStore.Controllers
     [Authorize(Roles ="Admin")]
     public class FileController : Controller
     {
+        //create instance of database
         private ExtractionStoreDb db = new ExtractionStoreDb();
 
+        //autocompletes on the search bar for the first ten matching file names that have been uploaded to the db
+        //parameters: the file name to search for as a string
+        //returns the items in json format so they can be displayed and selected from the search bar drop down
         public ActionResult Autocomplete(string term)
         {
             var model =
@@ -32,7 +36,9 @@ namespace ExtractionStore.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: File
+        //used to display the first 10 items after a search has been submitted on the analysis page
+        //if no search term has been entered, then the first 10 items in alphabetical order are displayed
+        //the results are pageable and returned on the file partial view
         public ActionResult Index(string searchTerm = null, int page = 1)
         {
             var model =
@@ -74,16 +80,20 @@ namespace ExtractionStore.Controllers
         // POST: File/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //edited so that on creation of a new db record, an actual file can be uploaded using HttpPostedFileBase, part of System.Web
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FileName,ContentType,Content")] File file, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                //check to make sure the file has content
                 if (upload != null && upload.ContentLength > 0)
                 {
+                    //identify who the current user is
                     ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
+                    //create a file instance and assign it values from the HttpPostedFileBase
                     file = new File
                     {
                         FileName = System.IO.Path.GetFileName(upload.FileName),
@@ -91,17 +101,20 @@ namespace ExtractionStore.Controllers
                         ContentType = upload.ContentType
                     };
 
+                    //read in file content
                     using (var reader = new System.IO.BinaryReader(upload.InputStream))
                     {
                         file.Content = reader.ReadBytes(upload.ContentLength);
                     }
 
+                    //check to make sure the file is a pdf
                     if (file.ContentType != "application/pdf")
                     {
                         ModelState.AddModelError("ContentType", "Invalid file type.  Only PDF files are accepted.");
                         return View(file);
                     }
                 }
+                //store new file in the db
                 db.Files.Add(file);
                 db.SaveChanges();
                 return RedirectToAction("Index");

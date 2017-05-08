@@ -1,12 +1,12 @@
 ﻿@model IPagedList<ExtractionStore.Models.File>
 
 <div id="fileList">
-
+    @*add buttons for pagin results to the top of the view*@
     <div class="pagedList" data-exst-target="#fileList">
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
         PagedListRenderOptions.MinimalWithItemCountText)
     </div>
-
+    @*table headers*@
     <table class="table">
         <tr>
             <th>
@@ -24,6 +24,7 @@
             <th></th>
         </tr>
 
+        @*display the various information associated with a given file in the db and links to view their details or delete them*@
         @foreach (var item in Model)
         {
             <tr>

@@ -17,7 +17,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-
+            @*button to select file after opening your file viewer*@
             <div class="form-group">
                 <h4>
                     @Html.Label("Select File", new { @class = "control-label col-md-2" })
@@ -26,13 +26,13 @@
                     </div>
                 </h4>
             </div>
-
+            @*error message for non PDFs*@
             <div>
                 <h4>
                     &emsp;&emsp;&emsp;&emsp;@Html.ValidationMessageFor(m => m.ContentType)
                 </h4>
             </div>
-    
+            @*upload button*@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Upload" class="btn btn-default" />
