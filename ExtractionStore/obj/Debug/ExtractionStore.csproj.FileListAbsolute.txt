@@ -122,3 +122,5 @@ C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\Extractio
 C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\bin\WebMatrix.WebData.xml
 C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\bin\Elmah.dll
 C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\bin\Elmah.Mvc.dll
+C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\obj\Debug\ExtractionStore.Migrations.InitialCreate.resources
+C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\obj\Debug\ExtractionStore.csproj.GenerateResource.Cache

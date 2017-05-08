@@ -97,7 +97,7 @@ namespace ExtractionStore.Controllers
 
                     if (file.ContentType != "application/pdf")
                     {
-                        ModelState.AddModelError("", "Invalid File Type");
+                        ModelState.AddModelError("ContentType", "Invalid file type.  Only PDF files are accepted.");
                         return View(file);
                     }
                 }

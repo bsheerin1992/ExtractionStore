@@ -19,10 +19,18 @@
         <div class="form-horizontal">
 
             <div class="form-group">
-                @Html.Label("Select File", new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" id="Select File" name="upload" />
-                </div>
+                <h4>
+                    @Html.Label("Select File", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="file" id="Select File" name="upload" />
+                    </div>
+                </h4>
+            </div>
+
+            <div>
+                <h4>
+                    &emsp;&emsp;&emsp;&emsp;@Html.ValidationMessageFor(m => m.ContentType)
+                </h4>
             </div>
     
             <div class="form-group">
