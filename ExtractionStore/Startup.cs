@@ -30,14 +30,14 @@ namespace ExtractionStore
             {
 
                 // first we create Admin rool   
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
                 //Here we create a Admin super user who will maintain the website                  
 
                 var user = new ApplicationUser();
-                user.UserName = "bpsheeri@go.olemiss.edu";
+                user.UserName = "bpsheeri";
                 user.Email = "bpsheeri@go.olemiss.edu";
 
                 string userPWD = "Rebel_17";
@@ -50,24 +50,6 @@ namespace ExtractionStore
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
 
                 }
-            }
-
-            // creating Creating Manager role    
-            if (!roleManager.RoleExists("Manager"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Manager";
-                roleManager.Create(role);
-
-            }
-
-            // creating Creating Employee role    
-            if (!roleManager.RoleExists("Employee"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Employee";
-                roleManager.Create(role);
-
             }
         }
     }
