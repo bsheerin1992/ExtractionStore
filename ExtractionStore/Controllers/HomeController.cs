@@ -28,12 +28,7 @@ namespace ExtractionStore.Controllers
         {
             ViewBag.Message = "Your analysis page.";
 
-            var model =
-                _db.Files
-                   .OrderBy(f => f.FileName)
-                   .Where(f => searchTerm == null || f.FileName.Contains(searchTerm));
-
-            return View(model);
+            return View();
         }
 
         protected override void Dispose(bool disposing)

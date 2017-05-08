@@ -14,7 +14,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace ExtractionStore.Controllers
 {
-    [Authorize(Users = "bpsheeri@go.olemiss.edu")]
+    [Authorize(Roles ="Admin")]
     public class FileController : Controller
     {
         private ExtractionStoreDb db = new ExtractionStoreDb();
@@ -129,7 +129,7 @@ namespace ExtractionStore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Type,Data")] File file)
+        public ActionResult Edit([Bind(Include = "Id,FileName,ContentType")] File file)
         {
             if (ModelState.IsValid)
             {
