@@ -67,8 +67,6 @@ c:\users\bam bam\documents\visual studio 2015\Projects\ExtractionStore\Extractio
 c:\users\bam bam\documents\visual studio 2015\Projects\ExtractionStore\ExtractionStore\obj\Debug\ExtractionStore.csprojResolveAssemblyReference.cache
 c:\users\bam bam\documents\visual studio 2015\Projects\ExtractionStore\ExtractionStore\obj\Debug\ExtractionStore.dll
 c:\users\bam bam\documents\visual studio 2015\Projects\ExtractionStore\ExtractionStore\obj\Debug\ExtractionStore.pdb
-C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\obj\Debug\ExtractionStore.Migrations.InitialCreate.resources
-C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\obj\Debug\ExtractionStore.csproj.GenerateResource.Cache
 C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\bin\roslyn\csc.exe.config
 C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\bin\roslyn\csc.rsp
 C:\Users\Bam Bam\Documents\Visual Studio 2015\Projects\ExtractionStore\ExtractionStore\bin\roslyn\csi.exe
