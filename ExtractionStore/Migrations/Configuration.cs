@@ -11,7 +11,7 @@ namespace ExtractionStore.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "ExtractionStore.Models.ExtractionStoreDb";
         }
 

@@ -37,10 +37,10 @@ namespace ExtractionStore
                 //Here we create a Admin super user who will maintain the website                  
 
                 var user = new ApplicationUser();
-                user.UserName = "bpsheeri";
+                user.UserName = "bpsheeri@go.olemiss.edu";
                 user.Email = "bpsheeri@go.olemiss.edu";
 
-                string userPWD = "Rebel_17";
+                string userPWD = "Rebels_17";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
